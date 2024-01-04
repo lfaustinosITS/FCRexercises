@@ -1,0 +1,104 @@
+.fancy-button {
+  width: fit-content;
+  margin: 200px;
+  display: inline-block;
+  padding: 10px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-radius: 15px;  
+  box-sizing: content-box;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.7),
+              0 0 0 10px #cbcbcb,
+              0 0 0 11px white,
+              0 0 0 12px #666666,
+              1px 2px 3px  15px rgba(0, 0, 0, 0.5);
+  
+  text-decoration: none;
+  text-shadow: 0px 0.5px white;
+  text-align: center;
+  color: #555555;
+  background: linear-gradient(to bottom, #dddddd, #afafaf);
+
+
+}
+
+
+.fancy-button::before,
+.fancy-button::after {
+  content: " ★ ";
+text-shadow: 0px 0.5px white;
+  font-size: 150%;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888888;
+  
+}
+
+form {
+  width:fit-content;
+  display: grid;
+  flex-direction: row;
+  align-items: center; 
+  text-align: center;
+}
+.form-field::before {
+  content: attr(data-hint);
+  position: absolute;
+  font-size:small;
+  font-weight:bold;
+  transform:  translateY(-110%);
+  background-color: #000;
+  color: #fff;
+  padding: 7px;
+  opacity: 1;
+  z-index:2;
+  box-shadow: 2px 2px 10px black;
+
+}
+.form-field::after {
+   content: "";
+  position: absolute;
+width: 16px;
+height: 16px;
+ transform: translateX(100%) translateY(-90%) rotate(-135deg);
+ border-top: 15px solid transparent;
+ border-top-color: inherit;
+ z-index:1;
+box-shadow: 2px 2px 10px black;
+}
+.form-field {
+  display: flex;
+  align-items: center;
+  border: none;
+  
+  outline: none;
+}
+input{
+  border: none;
+  outline: none;
+  border-bottom: 2px solid black;
+}
+
+label {
+  font-family: sans-serif;
+  width: fit-content;
+}
+
+button {
+  width: fit-content;
+  padding-inline: 5%;
+  grid-column: span 2;
+  margin-top: 3%;
+  margin-left: 25%;
+  color: white;
+  font-weight: bolder;
+  font-family: sans-serif;
+  background-color: #ff6348;
+  border: 10px solid #ff6348;
+  border-radius:100px;
+  letter-spacing: -1px;
+
+}
+
