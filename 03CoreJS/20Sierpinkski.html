@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sierpinski Triangle</title>
+  <style>
+    .menu {
+      width: fit-content;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h2 {
+      grid-column: span 3;
+    }
+
+    .sierpinski {
+      font-size: .5em;
+      position: relative;
+    }
+
+    .sierpinski span {
+      display: block;
+      width: 0;
+      height: 0;
+      border-width: 0 1em 1.732em 1em;
+      border-style: solid;
+      border-color: transparent transparent black transparent;
+    }
+
+    .sierpinski div:nth-child(1) {
+      padding-left: 1em;
+    }
+
+    .sierpinski *:nth-child(1) {
+      margin-left: 1em;
+      overflow: hidden;
+    }
+
+    .sierpinski *:nth-child(2) {
+      float: left;
+    }
+
+    .sierpinski *:nth-child(3) {
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu">
+    <h2>Number of iterations</h2>
+    <button id="next">+</button>
+    <p>0</p>
+    <button id="previous">-</button>
+  </div>
+  <br />
+  <br />
+  <div class="sierpinski" style="font-size: min(25vh,25vw);">
+    <span></span>
+  </div>
+
+  <script>
+    function nextIteration() {
+      const spanElements = document.querySelectorAll('.sierpinski span');
+      const numberDiv = document.querySelector('p')
+      let n = parseInt(numberDiv.textContent)
+      n++;
+      numberDiv.innerHTML = n
+      spanElements.forEach((span) => {
+        const div = document.createElement('div');
+
+        div.classList.add('sierpinski');
+        div.innerHTML = '<span></span><span></span><span></span>';
+        span.replaceWith(div);
+
+      });
+    }
+
+    function previousIteration() {
+      const sierpinskiElements = document.querySelectorAll('.sierpinski');
+      if (sierpinskiElements.length > 1) {
+        const numberDiv = document.querySelector('p')
+        let n = parseInt(numberDiv.textContent)
+        n--;
+        numberDiv.innerHTML = n
+        const leafSierpinski = Array.from(sierpinskiElements).filter((element) => element.querySelector('.sierpinski') === null);
+
+        leafSierpinski.forEach((element) => {
+          const div = document.createElement('span');
+          element.replaceWith(div);
+        })
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const plus = document.getElementById('next');
+      const minus = document.getElementById('previous');
+      const sierpinski = document.querySelector('.sierpinski span');
+
+      plus.addEventListener('click', () => {
+        nextIteration();
+      });
+
+      minus.addEventListener('click', () => {
+        previousIteration();
+      });
+    });
+  </script>
+</body>
+
+</html>
